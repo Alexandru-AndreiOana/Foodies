@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Showing tag";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>@ViewBag.Tag.TagName</p>
+
+<form method="post" action="/Tags/Delete/@ViewBag.Tag.TagId">
+
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+
+    <button class="btn btn-success" type="submit">Delete tag</button>
+
+</form>
+<br />
+<a class="btn btn-success" href="/Tags/Index/">Back to tag list</a>
+
+<br />
+<hr />

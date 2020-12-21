@@ -1,0 +1,22 @@
+﻿@model foodies.Models.ApplicationUser
+
+<h1>@ViewBag.User.Nickname</h1>
+
+@if (ViewBag.User.IsPrivate == true && ViewBag.IsAdmin == false)
+{
+    <h2>This profile is private and cannot be accessed:(</h2>
+}
+else
+{
+    foreach (RealProject.Models.Post post in ViewBag.UserPosts)
+    {
+        <div class="panel panel-default">
+            @Html.Partial("PostInfo", post)
+            <div class="panel-footer">
+                <a class="btn btn-success" href="/Posts/Show/@post.Id">Show post</a>
+            </div>
+        </div>
+
+    }
+}
+

@@ -1,0 +1,32 @@
+﻿@model RealProject.Models.Post
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Posts"))
+{ 
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <br />
+    @Html.HiddenFor(m => m.Id)
+
+    @Html.Label("Title", "Post Title")
+    <br />
+    @Html.EditorFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger " })
+    <br /><br />
+    @Html.Label("Content", "Post Content")
+    <br />
+    @Html.Editor("Content")
+    @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger " })
+    <br /><br />
+    @Html.HiddenFor(m => m.Date)
+    <label>Select tag</label>
+    @Html.DropDownListFor(m => m.TagId,
+    new SelectList(Model.Tagger, "Value", "Text"),
+    "Select Tag", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.TagId, "", new { @class = "text-danger " })
+    <br />
+    <button type="submit">Modify post</button>
+}

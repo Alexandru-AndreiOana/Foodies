@@ -1,0 +1,20 @@
+﻿<h1>@ViewBag.Message</h1>
+<h2><strong>Feed</strong></h2>
+
+
+<br />
+
+@foreach (RealProject.Models.Post post in ViewBag.Posts)
+{
+    <div class="panel panel-default">
+        @Html.Partial("PostInfo", post)
+        <div class="panel-footer">
+            <a class="btn btn-success" href="/Posts/Show/@post.Id">Show post</a>
+        </div>
+    </div>
+
+}
+
+
+
+

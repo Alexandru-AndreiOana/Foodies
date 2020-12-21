@@ -1,0 +1,18 @@
+﻿<h1>@ViewBag.Message</h1>
+
+
+<br />
+
+@foreach (foodies.Models.ApplicationUser user in ViewBag.Users)
+{
+    if (user.Id != ViewBag.Profile.UserId)
+    {
+        <div class="panel panel-default">
+            <a href="/Profiles/Show/@user.Id"><strong> @user.Nickname </strong></a>
+        </div>
+    }
+
+}
+
+<!--System.InvalidOperationException: 'A specified Include path is not valid. The EntityType 'foodies.Models.Profile' does not declare a navigation property with the name 'Post'.'
+-->

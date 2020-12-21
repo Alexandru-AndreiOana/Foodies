@@ -1,0 +1,92 @@
+﻿@model RealProject.Models.Post
+
+@{
+    ViewBag.Title = "Show";
+}
+<br />
+
+
+<div class="panel panel-default">
+    @Html.Partial("PostInfo", Model)
+
+    @if (ViewBag.showButtons == true && Model.UserId == ViewBag.crtUser || ViewBag.isAdmin)
+    {
+        <div class="panel-footer">
+            <a class="btn btn-success pull-left" href="/Posts/Edit/@Model.Id">Modify post</a>
+
+            @using (Html.BeginForm(actionName: "Delete", controllerName: "Posts", method: FormMethod.Post, routeValues: new { id = @Model.Id }))
+            {
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-danger pull-right" type="submit">Delete post</button>
+            }
+            <div class="clearfix"></div>
+        </div>
+    }
+
+
+</div>
+
+
+<br />
+@foreach (var comm in Model.Comments)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div>
+                    <p>@comm.Content</p>
+                    <small class="pull-right">@comm.Date</small>
+                    <i>commented by</i><strong> @comm.User.Nickname </strong>
+                </div>
+
+                @if (comm.UserId == ViewBag.crtUser || ViewBag.isAdmin)
+                {
+                    <div style="display: inline-block; float : left; margin-right: 15px">
+                        <a class="glyphicon glyphicon-pencil" href="/Comments/Edit/@comm.CommentId"></a>
+                    </div>
+                    <div style="display: inline-block; float : left">
+                        <form method="post" action="/Comments/Delete/@comm.CommentId">
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+                        </form>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <hr />
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div class="panel">
+                <form method="post" action="/Posts/Show/@Model.Id">
+                    <div class="panel-body">
+                        <input type="hidden" name="PostId" value="@Model.Id" />
+                        <label>Comment</label>
+                        <br />
+                        <textarea class="form-control" name="Content"></textarea>
+                        @Html.ValidationMessage("Content", "", new { @class = "text-danger"})
+                        <br />
+                        <button class="btn btn-success " type="submit">Add comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+
+
+
+
+
+

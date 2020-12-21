@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Tag List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var tag in ViewBag.Tags)
+{
+<p>@tag.TagName</p>
+<a href="/Tags/Show/@tag.TagId">Show Tag</a>
+<a href="/Tags/Edit/@tag.TagId">Modify Tag</a>
+<br />
+<hr />
+<br />
+}
+<br />
+<a class="btn btn-info" href="/Tags/New">Add a new Tag</a>
+<br />
+
+
+

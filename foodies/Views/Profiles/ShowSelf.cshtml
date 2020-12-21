@@ -1,0 +1,16 @@
+﻿@model foodies.Models.ApplicationUser
+
+<h1><strong>@ViewBag.User.Nickname</strong></h1>
+<h3>Your posts</h3>
+
+@foreach (RealProject.Models.Post post in ViewBag.UserPosts)
+{
+        <div class="panel panel-default">
+            @Html.Partial("PostInfo", post)
+            <div class="panel-footer">
+                <a class="btn btn-success" href="/Posts/Show/@post.Id">Show post</a>
+            </div>
+        </div>
+   
+}
+
