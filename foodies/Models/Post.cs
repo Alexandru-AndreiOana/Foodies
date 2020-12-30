@@ -33,6 +33,8 @@ namespace RealProject.Models
         //public virtual Profile Profile { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public IEnumerable<SelectListItem> Tagger { get; set; }
+
+        public virtual Group group { get; set; }
     }
    /* public class PostDBContext : DbContext
     {

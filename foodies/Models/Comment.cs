@@ -18,9 +18,12 @@ namespace RealProject.Models
         public DateTime Date { get; set; }
         public int PostId { get; set; }
 
+       // cu linia asta de mai jos se suprascriu comm si nu se salveaza
+       // public int GroupId { get; set; }
         public string UserId { get; set; }
-        public virtual ApplicationUser User { get; set; }
 
+        public virtual ApplicationUser User { get; set; }
+        public virtual Group group { get; set; }
         public virtual Post Post { get; set; }
     }
 }

@@ -1,0 +1,24 @@
+﻿@model foodies.Models.Group
+
+<h2>Create your Group!</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Groups"))
+{
+
+    @Html.Label("Name", "Group Name")
+    <br />
+    @Html.TextBox("Name", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+    <br /><br />
+
+    @Html.Label("About", "About Group")
+    <br />
+    @Html.TextArea("About", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.About, null, new { @class = "text-danger" })
+    <br /><br />
+
+    <button type="submit">Create your Group</button>
+}
+
+
+

@@ -169,8 +169,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembershipsController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
@@ -184,8 +186,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Tag.cs" />
@@ -261,6 +265,11 @@
     <Content Include="Views\Profiles\Index.cshtml" />
     <Content Include="Views\Profiles\Show.cshtml" />
     <Content Include="Views\Profiles\ShowSelf.cshtml" />
+    <Content Include="Views\Groups\New.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\Groups\IndexSelf.cshtml" />
+    <Content Include="Views\Memberships\New.cshtml" />
+    <Content Include="Views\Groups\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

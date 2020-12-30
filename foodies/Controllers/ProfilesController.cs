@@ -16,19 +16,32 @@ namespace foodies.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: lista cu toate profilele
-        public ActionResult Index(Profile profile)
+        /* public ActionResult Index(Profile profile)
+         {
+             //  var crtUser = UserManager.FindById(User.Identity.GetUserId());
+             profile.UserId = User.Identity.GetUserId();
+             var users = db.Users;
+             ViewBag.Users = users;
+             ViewBag.Profile = profile;
+            /* foreach (ApplicationUser user in ViewBag.Users)
+             {
+                 Debug.WriteLine(user.Nickname);
+             }
+
+             return View();
+         }
+     */
+        public ActionResult Index(string search)
         {
-            //  var crtUser = UserManager.FindById(User.Identity.GetUserId());
+            var profile = new Profile();
             profile.UserId = User.Identity.GetUserId();
-            var users = db.Users;
-            ViewBag.Users = users;
+            ViewBag.Users = db.Users.Where(x => x.Nickname.StartsWith(search) || search == null).ToList();
             ViewBag.Profile = profile;
-           /* foreach (ApplicationUser user in ViewBag.Users)
-            {
-                Debug.WriteLine(user.Nickname);
-            }*/
+
             return View();
         }
+
+       
 
 
         // GET: vizualizarea unui profil anume

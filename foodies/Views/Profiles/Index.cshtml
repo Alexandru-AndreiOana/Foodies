@@ -1,6 +1,15 @@
-﻿<h1>@ViewBag.Message</h1>
+﻿<br />
+<br />
+<br />
 
-
+@using (Html.BeginForm("Index", "Profiles", FormMethod.Get))
+{
+    <div>
+         @Html.TextBox("search",null, new {@placeholder = "Find Foodists..."})
+        <input type="submit" value="Search" />
+    </div>
+}
+<br />
 <br />
 
 @foreach (foodies.Models.ApplicationUser user in ViewBag.Users)
@@ -13,6 +22,3 @@
     }
 
 }
-
-<!--System.InvalidOperationException: 'A specified Include path is not valid. The EntityType 'foodies.Models.Profile' does not declare a navigation property with the name 'Post'.'
--->
