@@ -18,18 +18,13 @@ namespace foodies.Controllers
         // returneaza lista de grupuri din care face parte user ul curent
         public ActionResult IndexSelf(string search)
         {
-            return View();
-        }
-
-        //returneaza toate grupurile
-        public ActionResult Index(string search)
-        {
-           /* Membership membership = new Membership();
+            Membership membership = new Membership();
             var userId = User.Identity.GetUserId();
             var correctMemberships = from grup in db.Memberships
-                                     where grup.MemberId != userId
+                                     where grup.MemberId == userId
                                      select grup.GroupId;
-            System.Diagnostics.Debug.WriteLine(correctMemberships);
+
+            //System.Diagnostics.Debug.WriteLine(correctMemberships);
 
 
             var correctGroups = from grup in db.Groups
@@ -37,10 +32,32 @@ namespace foodies.Controllers
                                 select grup;
 
             ViewBag.Groups = correctGroups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
-            
-                */
-            ViewBag.Groups = db.Groups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
-            
+            return View();
+        }
+
+        //returneaza toate grupurile
+        public ActionResult Index(string search)
+        {
+             Membership membership = new Membership();
+             var userId = User.Identity.GetUserId();
+             var correctMemberships = from grup in db.Memberships
+                                      where grup.MemberId == userId
+                                      select grup.GroupId;
+
+             //System.Diagnostics.Debug.WriteLine(correctMemberships);
+
+             // in correctGroups avem mai multe grupuri decat strict cele din care nu face parte userul
+             var wrongGroups = from grup in db.Groups
+                                 where correctMemberships.Contains(grup.GroupId)
+                                 select grup;
+
+            //
+            var correctGroups = db.Groups.Where(x => !(wrongGroups.Contains(x))) ;
+            ViewBag.Groups = correctGroups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
+
+            // codu asta merge ok si daca se strica se repara el
+            // ViewBag.Groups = db.Groups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
+
             return View();
         }
         
@@ -91,42 +108,43 @@ namespace foodies.Controllers
         [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Show(int id)
         {
-            Post post = db.Posts.Find(id);
+            Group group = db.Groups.Find(id);
             SetAccesRights();
-
-            return View(post);
+            ViewBag.GroupName = group.Name;
+            return View(group);
 
         }
 
         [HttpPost]
         [Authorize(Roles = "User,Editor,Admin")]
-        public ActionResult Show(Comment comm)
+        public ActionResult Show(Message msg)
         {
-            comm.Date = DateTime.Now;
-            comm.UserId = User.Identity.GetUserId();
+            msg.Date = DateTime.Now;
+            msg.UserId = User.Identity.GetUserId();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Comments.Add(comm);
+                    db.Messages.Add(msg);
                     db.SaveChanges();
-                    return Redirect("/Posts/Show/" + comm.PostId);
+                    //return Redirect("/Groups/Show/" + msg.GroupId);
+                    return RedirectToAction("Show/"+ msg.GroupId);
                 }
 
                 else
                 {
-                    Post a = db.Posts.Find(comm.PostId);
+                    Group g = db.Groups.Find(msg.GroupId);
                     SetAccesRights();
-                    return View(a);
+                    return View(g);
                 }
 
             }
 
             catch (Exception e)
             {
-                Post a = db.Posts.Find(comm.PostId);
+                Group g = db.Groups.Find(msg.GroupId);
                 SetAccesRights();
-                return View(a);
+                return View(g);
             }
 
         }

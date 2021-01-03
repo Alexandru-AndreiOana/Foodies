@@ -26,10 +26,9 @@ namespace foodies.Models
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 
-        //public virtual ICollection<ApplicationUser> Users { get; set; }
+
         public virtual ICollection<ApplicationUser> Users { get; set; }
-        //public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
 
     }
 }

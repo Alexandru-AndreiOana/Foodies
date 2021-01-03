@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit message:</h2>
+<form method="post" action="/Messages/Edit/@ViewBag.Message.MessageId">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <label>Message content</label>
+    <br />
+    <textarea name="Content">@ViewBag.Message.Content</textarea>
+    <br />
+    <button type="submit">Edit message</button>
+</form>
+

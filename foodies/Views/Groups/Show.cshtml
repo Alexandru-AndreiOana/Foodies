@@ -1,23 +1,28 @@
-﻿<br />
-@foreach (var comm in Model.Comments)
+﻿@model foodies.Models.Group
+<br />
+<h2>@ViewBag.GroupName</h2>
+<br />
+<br />
+
+@foreach (var msg in Model.Messages)
 {
     <div class="container">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div>
-                    <p>@comm.Content</p>
-                    <small class="pull-right">@comm.Date</small>
-                    <i>commented by</i><strong> @comm.User.Nickname </strong>
+                    <p>@msg.Content</p>
+                    <small class="pull-right">@msg.Date</small>
+                    <i>Message by</i><strong> @msg.User.Nickname </strong>
                 </div>
 
-                @if (comm.UserId == ViewBag.crtUser || ViewBag.isAdmin)
+                @if (msg.UserId == ViewBag.crtUser || ViewBag.isAdmin)
                 {
                     <div style="display: inline-block; float : left; margin-right: 15px">
-                        <a class="glyphicon glyphicon-pencil" href="/Comments/Edit/@comm.CommentId"></a>
+                        <a class="glyphicon glyphicon-pencil" href="/Messages/Edit/@msg.MessageId"></a>
                     </div>
                     <div style="display: inline-block; float : left">
-                        <form method="post" action="/Comments/Delete/@comm.CommentId">
+                        <form method="post" action="/Messages/Delete/@msg.MessageId">
                             @Html.HttpMethodOverride(HttpVerbs.Delete)
                             <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
                         </form>
@@ -38,15 +43,15 @@
         </div>
         <div class="col-md-8">
             <div class="panel">
-                <form method="post" action="/Posts/Show/@Model.Id">
+                <form method="post" action="/Groups/Show/@Model.GroupId">
                     <div class="panel-body">
-                        <input type="hidden" name="PostId" value="@Model.Id" />
-                        <label>Comment</label>
+                        <input type="hidden" name="GroupId" value="@Model.GroupId" />
+                        <label>Message</label>
                         <br />
                         <textarea class="form-control" name="Content"></textarea>
                         @Html.ValidationMessage("Content", "", new { @class = "text-danger" })
                         <br />
-                        <button class="btn btn-success " type="submit">Add comment</button>
+                        <button class="btn btn-success " type="submit">Add a message</button>
                     </div>
                 </form>
             </div>

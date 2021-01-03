@@ -30,17 +30,18 @@
                         <li>@Html.ActionLink("Display tags", "Index", "Tags")</li>
                         <li>@Html.ActionLink("Add tag", "New", "Tags")</li>
                         <li>@Html.ActionLink("Find Foodists", "Index", "Profiles")</li>
-                        <li>@Html.ActionLink("Find Group", "Index", "Groups")</li>
-                        <li>@Html.ActionLink("My Groups", "IndexSelf", "Groups")</li>
-                        <li>@Html.ActionLink("Create Group", "New", "Groups")</li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Groups</a>
+                            <ul class="dropdown-menu">
 
-                        <!-- <li>
-            <form action="">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit">Submit</button>
-            </form>
-        </li>
-        -->
+                                <li>@Html.ActionLink("Find Group", "Index", "Groups")</li>
+                                <li>@Html.ActionLink("My Groups", "IndexSelf", "Groups")</li>
+                                <li>@Html.ActionLink("Create Group", "New", "Groups")</li>
+
+
+
+                            </ul>
+                        </li>
 
                     }
 
@@ -59,9 +60,18 @@
                         <li>@Html.ActionLink("Posts feed", "Index", "Posts")</li>
                         <li>@Html.ActionLink("Add post", "New", "Posts")</li>
                         <li>@Html.ActionLink("Find Foodists", "Index", "Profiles")</li>
-                        <li>@Html.ActionLink("Find Group", "Index", "Groups")</li>
-                        <li>@Html.ActionLink("My Groups", "IndexSelf", "Groups")</li>
-                        <li>@Html.ActionLink("Create Group", "New", "Groups")</li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Groups</a>
+                            <ul class="dropdown-menu">
+
+                                <li>@Html.ActionLink("Find Group", "Index", "Groups")</li>
+                                <li>@Html.ActionLink("My Groups", "IndexSelf", "Groups")</li>
+                                <li>@Html.ActionLink("Create Group", "New", "Groups")</li>
+
+
+
+                            </ul>
+                        </li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

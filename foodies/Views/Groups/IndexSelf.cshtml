@@ -1,1 +1,22 @@
-﻿
+﻿<br />
+<br />
+<br />
+
+@using (Html.BeginForm("IndexSelf", "Groups", FormMethod.Get))
+{
+    <div>
+        @Html.TextBox("search", null, new { @placeholder = "Find Your Groups..." })
+        <input type="submit" value="Search" />
+    </div>
+}
+<br />
+<br />
+
+@foreach (foodies.Models.Group group in ViewBag.Groups)
+{
+
+    <div class="panel panel-default">
+        <a href="Show/@group.GroupId"><strong> @group.Name </strong></a>
+    </div>
+
+}
