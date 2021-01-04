@@ -1,0 +1,30 @@
+﻿<h2>@ViewBag.Message</h2>
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm("IndexAdmin", "Groups", FormMethod.Get))
+{
+<div>
+    @Html.TextBox("search", null, new { @placeholder = "Find Groups..." })
+    <input type="submit" value="Search" />
+</div>
+}
+<br />
+<br />
+
+@foreach (foodies.Models.Group group in ViewBag.Groups)
+{
+
+<div class="panel panel-default">
+    <a href="Show/@group.GroupId"><strong> @group.Name </strong></a>
+    <h4>@group.About</h4>
+
+    <form method="post" action="/Groups/Delete/@group.GroupId">
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+    </form>
+
+</div>
+
+}

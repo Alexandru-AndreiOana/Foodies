@@ -273,6 +273,7 @@
     <Content Include="Views\Memberships\New.cshtml" />
     <Content Include="Views\Groups\Show.cshtml" />
     <Content Include="Views\Messages\Edit.cshtml" />
+    <Content Include="Views\Groups\IndexAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

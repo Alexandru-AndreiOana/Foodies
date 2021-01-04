@@ -32,6 +32,19 @@ namespace foodies.Controllers
                                 select grup;
 
             ViewBag.Groups = correctGroups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
+            ViewBag.crtId = userId;
+            return View();
+        }
+
+        public ActionResult IndexAdmin(string search)
+        {
+            
+            ViewBag.Groups = db.Groups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
+
+            if (TempData.ContainsKey("joinMessage"))
+            {
+                ViewBag.message = TempData["joinMessage"].ToString();
+            }
             return View();
         }
 
@@ -46,7 +59,7 @@ namespace foodies.Controllers
 
              //System.Diagnostics.Debug.WriteLine(correctMemberships);
 
-             // in correctGroups avem mai multe grupuri decat strict cele din care nu face parte userul
+             
              var wrongGroups = from grup in db.Groups
                                  where correctMemberships.Contains(grup.GroupId)
                                  select grup;
@@ -58,6 +71,10 @@ namespace foodies.Controllers
             // codu asta merge ok si daca se strica se repara el
             // ViewBag.Groups = db.Groups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
 
+            if (TempData.ContainsKey("joinMessage"))
+            {
+                ViewBag.message = TempData["joinMessage"].ToString();
+            }
             return View();
         }
         
@@ -89,7 +106,15 @@ namespace foodies.Controllers
                     db.Memberships.Add(membership);
                     db.SaveChanges();
                     //TempData["message"] = "The group was added."; merge dubios, se afiseaza la urmatorul redirect 
-                    return RedirectToAction("Index");
+                    if (User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("IndexAdmin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    
                 }
                 else
                 {
@@ -108,11 +133,19 @@ namespace foodies.Controllers
         [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Show(int id)
         {
-            Group group = db.Groups.Find(id);
-            SetAccesRights();
-            ViewBag.GroupName = group.Name;
-            return View(group);
+            Group groupObject = db.Groups.Find(id);
+            var userId = User.Identity.GetUserId();
 
+            var correctIds = from grp in db.Memberships
+                             where grp.GroupId == groupObject.GroupId
+                             select grp.MemberId;
+
+            ViewBag.isInGroup = correctIds.Contains(userId);
+            ViewBag.isAdmin = User.IsInRole("Admin");
+
+            SetAccesRights();
+            ViewBag.GroupName = groupObject.Name;
+            return View(groupObject);
         }
 
         [HttpPost]
@@ -147,6 +180,34 @@ namespace foodies.Controllers
                 return View(g);
             }
 
+        }
+
+        [HttpDelete]
+        [Authorize(Roles = "User, Editor, Admin")]
+        public ActionResult Delete(int id)
+        {
+            Group group = db.Groups.Find(id);
+            if (group.OwnerId == User.Identity.GetUserId() || User.IsInRole("Admin"))
+            {
+                db.Groups.Remove(group);
+                db.SaveChanges();
+                TempData["message"] = "The group " +
+                group.Name + " was deleted.";
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("IndexAdmin");
+                }
+                else
+                {
+                    return RedirectToAction("IndexSelf");
+                }
+                
+            }
+            else
+            {
+                TempData["message"] = "You do not have the permission to delete this group:(";
+                return RedirectToAction("Index");
+            }
         }
 
         private void SetAccesRights()

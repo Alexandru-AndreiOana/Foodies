@@ -1,4 +1,5 @@
 ﻿<br />
+<h2>@ViewBag.Message</h2>
 <br />
 <br />
 
@@ -15,8 +16,16 @@
 @foreach (foodies.Models.Group group in ViewBag.Groups)
 {
 
-    <div class="panel panel-default">
-        <a href="Show/@group.GroupId"><strong> @group.Name </strong></a>
-    </div>
+<div class="panel panel-default">
+    <a href="Show/@group.GroupId"><strong> @group.Name </strong></a>
+    <h4>@group.About</h4>
+    @if (ViewBag.crtId == group.OwnerId)
+    {
+        <form method="post" action="/Groups/Delete/@group.GroupId">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+        </form>
+    }
+</div>
 
 }

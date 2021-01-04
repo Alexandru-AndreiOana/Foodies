@@ -26,8 +26,13 @@ namespace foodies.Controllers
             membership.MemberId = User.Identity.GetUserId();
             db.Memberships.Add(membership);
             db.SaveChanges();
-            TempData["message"] = "U joined the group.";
-            return View();
+            TempData["joinMessage"] = "U joined the group.";
+           /* if (TempData.ContainsKey("joinMessage"))
+            {
+                ViewBag.message = TempData["joinMessage"].ToString();
+            }
+            */
+            return RedirectToAction("Index", "Groups");
         }
     }
 }

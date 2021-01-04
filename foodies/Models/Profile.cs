@@ -12,6 +12,8 @@ namespace RealProject.Models
         [Key]
         public int ProfileId { get; set; }
 
+        public string Description { get; set; }
+        public string FavouriteFood { get; set; }
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
