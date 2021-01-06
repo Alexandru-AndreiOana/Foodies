@@ -6,8 +6,8 @@
 @using (Html.BeginForm("IndexSelf", "Groups", FormMethod.Get))
 {
     <div>
-        @Html.TextBox("search", null, new { @placeholder = "Find Your Groups..." })
-        <input type="submit" value="Search" />
+        @Html.TextBox("search", null, new { @placeholder = "Find Your Groups...", @class = "form-control sidebyside" })
+        <input type="submit" value="Search" class="sidebyside btn btn-dark btncolor" />
     </div>
 }
 <br />
@@ -16,16 +16,20 @@
 @foreach (foodies.Models.Group group in ViewBag.Groups)
 {
 
-<div class="panel panel-default">
-    <a href="Show/@group.GroupId"><strong> @group.Name </strong></a>
-    <h4>@group.About</h4>
+<div class="panel panel-default panel-borderless" style="background-color:#202020">
+    <a href="Show/@group.GroupId"><strong class="groupName"> @group.Name </strong></a>
+    <br />
+    <h4 class="groupDesc">@group.About</h4>
+
     @if (ViewBag.crtId == group.OwnerId)
     {
         <form method="post" action="/Groups/Delete/@group.GroupId">
             @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+            <button class="glyphicon glyphicon-trash" style="border: none; background: transparent; color:#f5c242" type="submit"></button>
         </form>
     }
+    <hr />
+
 </div>
 
 }

@@ -30,13 +30,13 @@ namespace RealProject.Controllers
             {
                 db.Messages.Remove(msg);
                 db.SaveChanges();
-                TempData["message"] = "Message was deleted.";
+                //TempData["message"] = "Message was deleted.";
                 return Redirect("/Groups/Show/" + msg.GroupId);
             }
 
             else
             {
-                TempData["message"] = "You do not have the permission to delete this message:(";
+                //TempData["message"] = "You do not have the permission to delete this message:(";
                 return RedirectToAction("Group", "Show");
             }
         }
@@ -51,7 +51,7 @@ namespace RealProject.Controllers
                 {
                     db.Messages.Add(msg);
                     db.SaveChanges();
-                    TempData["message"] = "The message was added.";
+                    //TempData["message"] = "The message was added.";
                     return Redirect("/Group/Show/" + msg.GroupId);
                 }
                 else
@@ -74,12 +74,12 @@ namespace RealProject.Controllers
             if (msg.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
             {
                 ViewBag.Message = msg;
-                TempData["message"] = "Message " + "was edited.";
+                //TempData["message"] = "Message " + "was edited.";
                 return View();
             }
             else
             {
-                TempData["message"] = "You do not have the permission to edit this message(";
+                //TempData["message"] = "You do not have the permission to edit this message(";
                 return RedirectToAction("Groups", "Show");
             }
         }

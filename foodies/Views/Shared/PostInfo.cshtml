@@ -1,13 +1,15 @@
-﻿<div class="panel-heading">@Model.Title</div>
-<div class="panel-body">
-    <strong>@Model.Content</strong>
+﻿<div class="panel-heading panel-borderless" style="background-color:#f5c242;"><span class="titleText">@Model.Title</span></div>
+<div class="panel-body panel-borderless" style="background-color:#171717;">
+    <p class="contentText">@Model.Content</p>
     <br />
-    <span class="label label-success">@Model.Date</span>
     <br />
-    <i class="glyphicon glyphicon-globe"></i> @Model.Tag.TagName
+    <i class="glyphicon glyphicon-tag" style="color:#f5c242" ></i><strong style="color:#f5c242"> @Model.Tag.TagName</strong>
     <br />
-    <i>posted by</i><strong> @Model.User.Nickname </strong>
-    <hr>
+    <i class="glyphicon glyphicon-user" style="color:#f5c242"></i><strong style="color:#f5c242"> @Model.User.Nickname </strong>
+    <br />
+   
+    <span class="label label-success"   style="color:#f5c242; background-color:black" >@Model.Date</span>
+  
 </div>
 
 

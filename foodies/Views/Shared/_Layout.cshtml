@@ -16,8 +16,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Foodies", "Index", "Posts", new { area = "" }, new { @class = "navbar-brand" })
+                </button> 
+                @Html.ActionLink("Foodies🍔", "Index", "Posts", new { area = "" }, new { @class = "navbar-brand navbarLogoText" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -27,7 +27,7 @@
 
                         <li>@Html.ActionLink("Posts feed", "Index", "Posts")</li>
                         <li>@Html.ActionLink("Add post", "New", "Posts")</li>
-                        <li>@Html.ActionLink("Display tags", "Index", "Tags")</li>
+                        <li>@Html.ActionLink("Display tags", "Index")</li>
                         <li>@Html.ActionLink("Add tag", "New", "Tags")</li>
                         <li>@Html.ActionLink("Find Foodists", "Index", "Profiles")</li>
                         <li class="nav-item dropdown">
@@ -35,7 +35,7 @@
                             <ul class="dropdown-menu">
 
                                 <li>@Html.ActionLink("All groups", "IndexAdmin", "Groups")</li>
-                                <li>@Html.ActionLink("Create Group", "New", "Groups")</li>
+                                <li>@Html.ActionLink("Create group", "New", "Groups")</li>
 
 
 
@@ -79,9 +79,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        
         <footer>
-            <p>&copy; @DateTime.Now.Year - Foodies Inc.</p>
+            <p style="color:#f5c242">&copy; @DateTime.Now.Year - Foodies Inc.</pcolor:#f5c242>
         </footer>
     </div>
 

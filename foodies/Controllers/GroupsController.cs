@@ -31,7 +31,12 @@ namespace foodies.Controllers
             var correctGroups = from grup in db.Groups
                                 where correctMemberships.Contains(grup.GroupId)
                                 select grup;
-
+            /*
+            if (TempData.ContainsKey("deleteMessage"))
+            {
+                ViewBag.message = TempData["deleteMessage"].ToString();
+            }
+            */
             ViewBag.Groups = correctGroups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
             ViewBag.crtId = userId;
             return View();
@@ -41,6 +46,7 @@ namespace foodies.Controllers
         {
             
             ViewBag.Groups = db.Groups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
+            
 
             if (TempData.ContainsKey("joinMessage"))
             {
@@ -71,7 +77,7 @@ namespace foodies.Controllers
 
             // codu asta merge ok si daca se strica se repara el
             // ViewBag.Groups = db.Groups.Where(x => x.Name.StartsWith(search) || search == null).ToList();
-
+            
             if (TempData.ContainsKey("joinMessage"))
             {
                 ViewBag.message = TempData["joinMessage"].ToString();
@@ -146,6 +152,7 @@ namespace foodies.Controllers
 
             SetAccesRights();
             ViewBag.GroupName = groupObject.Name;
+            ViewBag.GroupAb = groupObject.About;
             return View(groupObject);
         }
 
@@ -192,7 +199,7 @@ namespace foodies.Controllers
             {
                 db.Groups.Remove(group);
                 db.SaveChanges();
-                TempData["message"] = "The group " +
+                TempData["deleteMessage"] = "The group " +
                 group.Name + " was deleted.";
                 if (User.IsInRole("Admin"))
                 {

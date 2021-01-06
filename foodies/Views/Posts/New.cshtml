@@ -1,29 +1,31 @@
 ﻿@model RealProject.Models.Post
 
-<h2>New Post</h2>
+<br />
+<br />
+<h2 class="color2 titlefont">New Post</h2>
 
 @using (Html.BeginForm(actionName: "New", controllerName: "Posts")) 
 {
 
-    @Html.Label("Title", "Post Title")
+    @Html.Label("Title", "Post Title", new { @style = "color:#f5c242" })
     <br />
     @Html.TextBox("Title", null, new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
     <br /><br />
 
-    @Html.Label("Content", "Post Content")
+    @Html.Label("Content", "Post Content", new { @style = "color:#f5c242" })
     <br />
     @Html.TextArea("Content", null, new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
     <br /><br />
 
-    <label>Select tag</label>
+    <label style = "color:#f5c242">Select tag</label>
     @Html.ValidationMessageFor(m => m.TagId, "", new { @class = "text-danger" })
     @Html.DropDownListFor(m => m.TagId, new SelectList(Model.Tagger, "Value", "Text"),
     "Select tag", new { @class = "form-control" })
     <br />
 
-    <button type="submit">Add post</button>
+    <button type="submit" class="sidebyside btn btn-dark btncolor">Add post</button>
 }
 
 

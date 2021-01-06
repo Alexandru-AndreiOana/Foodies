@@ -5,8 +5,9 @@
 @using (Html.BeginForm("Index", "Profiles", FormMethod.Get))
 {
     <div>
-         @Html.TextBox("search",null, new {@placeholder = "Find Foodists..."})
-        <input type="submit" value="Search" />
+        @Html.TextBox("search", null, new { @placeholder = "Find Foodists...", @class = "form-control sidebyside" })
+
+        <input type="submit" value="Search" id="searchBtn" class="sidebyside btn btn-dark btncolor" />
     </div>
 }
 <br />
@@ -16,9 +17,10 @@
 {
     if (user.Id != ViewBag.Profile.UserId)
     {
-        <div class="panel panel-default">
-            <a href="/Profiles/Show/@user.Id"><strong> @user.Nickname </strong></a>
+        <div>
+            <a href="/Profiles/Show/@user.Id" class="txtfont"><strong> @user.Nickname </strong></a>
         </div>
+        <br />
     }
 
 }

@@ -11,22 +11,22 @@
     <br />
     @Html.HiddenFor(m => m.Id)
 
-    @Html.Label("Title", "Post Title")
+    @Html.Label("Title", "Post Title", new { @style = "color:#f5c242" })
     <br />
     @Html.EditorFor(m => m.Title)
     @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger " })
     <br /><br />
-    @Html.Label("Content", "Post Content")
+    @Html.Label("Content", "Post Content", new { @style = "color:#f5c242" })
     <br />
     @Html.Editor("Content")
     @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger " })
     <br /><br />
     @Html.HiddenFor(m => m.Date)
-    <label>Select tag</label>
+    <label style="color:#f5c242">Select tag</label>
     @Html.DropDownListFor(m => m.TagId,
     new SelectList(Model.Tagger, "Value", "Text"),
     "Select Tag", new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.TagId, "", new { @class = "text-danger " })
     <br />
-    <button type="submit">Modify post</button>
+    <button type="submit" class="sidebyside btn btn-dark btncolor">Modify post</button>
 }

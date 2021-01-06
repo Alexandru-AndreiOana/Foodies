@@ -4,6 +4,8 @@
     ViewBag.Title = "Edit";
 }
 
+<br />
+<br />
 
 @using (Html.BeginForm(actionName: "Edit", controllerName: "Profiles"))
 {
@@ -11,21 +13,21 @@
     <br />
     @Html.HiddenFor(m => m.UserId)
 
-    @Html.Label("Name", "Your Name")
+    @Html.Label("Name", "Your Name", new { @style = "color:#f5c242" })
     <br />
     @Html.EditorFor(m => m.ProfileName)
     @Html.ValidationMessageFor(m => m.ProfileName, null, new { @class = "text-danger " })
     <br /><br />
-    @Html.Label("Description", "Profile description")
+    @Html.Label("Description", "Profile description", new { @style = "color:#f5c242" })
     <br />
     @Html.EditorFor(m => m.Description)
     @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger " })
     <br /><br />
-    @Html.Label("FavouriteFood", "Your favorite food")
+    @Html.Label("FavouriteFood", "Your favorite food", new { @style = "color:#f5c242" })
     <br />
     @Html.Editor("FavouriteFood")
     @Html.ValidationMessageFor(m => m.FavouriteFood, null, new { @class = "text-danger " })
     <br /><br />
 
-    <button type="submit">Modify your description</button>
+    <button type="submit" class="sidebyside btn btn-dark btncolor">Modify your description</button>
 }

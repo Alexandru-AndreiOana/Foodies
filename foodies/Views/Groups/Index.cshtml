@@ -1,4 +1,4 @@
-﻿<h2>@ViewBag.Message</h2>
+﻿<h4 style = "color:white">@ViewBag.Message</h4>
 <br />
 <br />
 <br />
@@ -6,8 +6,8 @@
 @using (Html.BeginForm("Index", "Groups", FormMethod.Get))
 {
     <div>
-        @Html.TextBox("search", null, new { @placeholder = "Find Groups..." })
-        <input type="submit" value="Search" />
+        @Html.TextBox("search", null, new { @placeholder = "Find Groups...", @class = "form-control sidebyside" })
+        <input type="submit" value="Search" class="sidebyside btn btn-dark btncolor"/>
     </div>
 }
 <br />
@@ -16,10 +16,17 @@
 @foreach (foodies.Models.Group group in ViewBag.Groups)
 {
     
-<div class="panel panel-default">
-    <a href="Groups/Show/@group.GroupId"><strong> @group.Name </strong></a>
-    <a href="Memberships/New/@group.GroupId">Join</a>
-    <h4>@group.About</h4>
+<div class="panel panel-default panel-borderless" style="background-color:#202020">
+    <a href="Groups/Show/@group.GroupId"><strong class="groupName"> @group.Name </strong></a>
+    <br />
+    <h4 class="groupDesc">@group.About</h4>
+    
+    <form action="Memberships/New/@group.GroupId">
+        <input class="btn btncolor" type="submit" value="Join" />
+    </form>
+
+
+    <hr />
 </div>
 
 }

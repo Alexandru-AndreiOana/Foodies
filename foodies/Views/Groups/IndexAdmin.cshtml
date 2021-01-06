@@ -6,8 +6,8 @@
 @using (Html.BeginForm("IndexAdmin", "Groups", FormMethod.Get))
 {
 <div>
-    @Html.TextBox("search", null, new { @placeholder = "Find Groups..." })
-    <input type="submit" value="Search" />
+    @Html.TextBox("search", null, new { @placeholder = "Find Groups...", @class = "form-control sidebyside" })
+    <input type="submit" value="Search" class="sidebyside btn btn-dark btncolor" />
 </div>
 }
 <br />

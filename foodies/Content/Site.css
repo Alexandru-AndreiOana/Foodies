@@ -1,6 +1,10 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Raleway:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #202020;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -24,47 +28,115 @@ textarea {
 }
 
 .navbar {
-    background-color: #dadada;
+    background-color: #f5c242;
     border: none;
-    box-shadow: 0 6px 12px #dadada;
+    box-shadow: 0 6px 17px #000000;
 }
 
-.navbar a
-{
-    color: #2c2c2c;
-}
-/*
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: blue;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-    z-index: 1;
-}
-
-    .dropdown-content li {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
+    .navbar a {
+        color: #202020;
     }
-    .dropdown-content li:hover {
-        background-color: #f1f1f1
-    }
-    */
+
 
 .dropdown-menu:hover .dropdown-content {
     position: relative;
     display: inline-block;
 }
+
+
+.sidebyside {
+    display: inline-block;
 }
+
+.btncolor {
+    background-color: #f5c242;
+    transform: translate(0px, -1px);
+}
+
+.color2 {
+    color: #f5c242;
+}
+
+.btncolor a {
+    color: #303030; 
     
+}
 
+.titlefont {
+    font-family: 'Raleway', sans-serif;
+    color: #f5c242;
+    font-size: 44px;
+    text-shadow: 0px 3px 5px black;
+}
 
+.txtfont {
+    font-family: 'Roboto', sans-serif;
+    color: #f5c242;
+    font-size: 20px;
+    text-shadow: 0px 3px 5px black;
+}
+
+.panel-borderless {
+    border: 0;
+    box-shadow: none;
+    
+}
+
+.contentText {
+    font-family: 'Open Sans', sans-serif;
+    color: #e3e3e3;
+    font-size:15px;
+}
+
+.titleText {
+    font-family: 'Open Sans', sans-serif;
+    color: #000000;
+    font-size: 23px;
+}
+
+.logo-image {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+}
+
+.navbarLogoText {
+    font-family: 'Open Sans', sans-serif;
+    color: #000000;
+    text-shadow: 0px, 3px, 4px, black;
+    font-size: 20px;
+}
+
+.navbarText {
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+    text-shadow: 0px, 3px, 4px, black;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.commentText {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-shadow: 0px, 3px, 4px, black;
+    font-size: 16px;
+}
+
+.whiteText {
+    color: white;
+}
+
+.groupName {
+    font-family: 'Open Sans', sans-serif;
+    color: #f5c242;
+    font-size: 30px;
+    text-shadow: 0px, 3px, 4px, black;
+}
+
+.groupDesc {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    font-size: 15px;
+}

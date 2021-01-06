@@ -1,39 +1,50 @@
 ﻿
-<h1><strong>@ViewBag.Profile.ProfileName</strong></h1>
-<a href="/Profiles/Edit/@ViewBag.Profile.ProfileId">Edit profile</a>
+<h1 class="color2 titlefont"><strong>@ViewBag.Profile.ProfileName</strong></h1>
+
+
+<form style="transform: translate(0px, -45px);" action="/Profiles/Edit/@ViewBag.Profile.ProfileId">
+    <input style="float:right; display:inline-block; " class="btn btncolor" type="submit" value="Edit Profile" />
+</form>
+
 <br>
-<br />
-<br />
+
+
 
 @if (ViewBag.Profile.Description == null)
   {
-    <p>You don't have a description.</p>
+    <p class="txtfont" style="padding-top: 20px">You don't have a description.</p>
   }
 else
   {
-    <p>About you: @ViewBag.Profile.Description</p>
+    <p class="txtfont" >About you: @ViewBag.Profile.Description</p>
   }
 
 @if (ViewBag.Profile.FavouriteFood == null)
   {
-    <p>You don't have a favourite food.</p>
+    <p class="txtfont">You don't have a favourite food.</p>
   }
 else
   {
-    <p>Your favourite food : @ViewBag.Profile.FavouriteFood</p>
+    <p class="txtfont">Your favourite food : @ViewBag.Profile.FavouriteFood</p>
   }
 
 <br />
 
 
-        <h3>Your posts</h3>
+        <p class="txtfont" style="font-size: 27px;" >Your posts</p>
+        <br/>
         @foreach (RealProject.Models.Post post in ViewBag.UserPosts)
         {
-        <div class="panel panel-default">
+        <div class="panel panel-default panel-borderless">
             @Html.Partial("PostInfo", post)
-            <div class="panel-footer">
-                <a class="btn btn-success" href="/Posts/Show/@post.Id">Show post</a>
+            <div class="panel-footer panel-borderless" style="background-color:#292929; border: 0;">
+                <form action="/Posts/Show/@post.Id" >
+                    <input class="btn btncolor" type="submit" value="Show Post" />
+                </form>
             </div>
+
+
+          
         </div>
         }
     
