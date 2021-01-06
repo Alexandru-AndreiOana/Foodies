@@ -1,16 +1,40 @@
-﻿@model foodies.Models.ApplicationUser
+﻿
+<h1><strong>@ViewBag.Profile.ProfileName</strong></h1>
+<a href="/Profiles/Edit/@ViewBag.Profile.ProfileId">Edit profile</a>
+<br>
+<br />
+<br />
 
-<h1><strong>@ViewBag.User.Nickname</strong></h1>
-<h3>Your posts</h3>
+@if (ViewBag.Profile.Description == null)
+  {
+    <p>You don't have a description.</p>
+  }
+else
+  {
+    <p>About you: @ViewBag.Profile.Description</p>
+  }
 
-@foreach (RealProject.Models.Post post in ViewBag.UserPosts)
-{
+@if (ViewBag.Profile.FavouriteFood == null)
+  {
+    <p>You don't have a favourite food.</p>
+  }
+else
+  {
+    <p>Your favourite food : @ViewBag.Profile.FavouriteFood</p>
+  }
+
+<br />
+
+
+        <h3>Your posts</h3>
+        @foreach (RealProject.Models.Post post in ViewBag.UserPosts)
+        {
         <div class="panel panel-default">
             @Html.Partial("PostInfo", post)
             <div class="panel-footer">
                 <a class="btn btn-success" href="/Posts/Show/@post.Id">Show post</a>
             </div>
         </div>
-   
-}
+        }
+    
 

@@ -1,13 +1,35 @@
-﻿@model foodies.Models.ApplicationUser
-
+﻿
 <h1>@ViewBag.User.Nickname</h1>
+<br>
+<br>
 
-@if (ViewBag.User.IsPrivate == true && ViewBag.IsAdmin == false)
+@if (ViewBag.PrivateProfile == true && ViewBag.IsAdmin == false)
 {
     <h2>This profile is private and cannot be accessed:(</h2>
 }
 else
 {
+    
+    if (ViewBag.Profile.Description == null)
+      {
+        <p>@ViewBag.User.Nickname doesn't have a description.</p>
+      }
+    else
+      {
+        <p>About @ViewBag.User.Nickname : @ViewBag.Profile.Description</p>
+      }
+
+    if (ViewBag.Profile.FavouriteFood == null)
+      {
+        <p>They don't have a favourite food.</p>
+      }
+    else
+      {
+        <p>Their favourite food : @ViewBag.Profile.FavouriteFood</p>
+      }
+        <h3>@ViewBag.User.Nickname 's posts:</h3>
+    <br>
+    <br>
     foreach (RealProject.Models.Post post in ViewBag.UserPosts)
     {
         <div class="panel panel-default">
