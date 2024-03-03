@@ -1,2 +1,2 @@
 # Foodies
-A social platform for foodies
+A social platform for food lovers.
